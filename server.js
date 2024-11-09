@@ -112,7 +112,9 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
 })
 
 app.post('/logout', (req, res) => {
-    req.logOut()
+    req.logOut(function (err) {
+        if (err) { return next(err); }
+    })
     res.redirect('/login')
 })
 
